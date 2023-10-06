@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
-    crossorigin="anonymous">
+    crossorigin="anonymous"> -->
     <title>Weather Dashboard</title>
 </head>
     
@@ -15,44 +15,124 @@
             <h1 class="text-center">Weather Dashboard</h1>
         </header>
         <main class="container">
-            <div class="container text-center">
-                <div class="col-md-8">
-                    <div id="searchContainer" class="card" style="width: 18rem;">
-                        <div class="card-body"> 
-                            <form id="citySearch">
-                                <label for="cityInput">Search for a city</label>
-                                <input type="text" id="cityInput" placeholder="Enter a city">
-                                <button id="searchButton">Search</button>
-                            </form>
-                         
-                            <ul id="searchHistory" class="list-group list-group-flush">
-                                <li class="list-group-item">placeholder</li>
-                                <li class="list-group-item">placeholder</li>
-                                <li class="list-group-item">placeholder</li>
+            <div class="city-input">
+                <h3>Search for city</h3>
+                <input type="text" placeholder="Enter city">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="weather-info">
+                <div class="current-weather">
+                    <div class="data">
+                        <h4>Las Vegas</h4>
+                            <ul>
+                                <li>Temp: 90F</li>
+                                <li>Wind: 2 M/S </li>
+                                <li>Humidity: 79%</li>
+                                <li>UV index: 7.8</li>
                             </ul>
-                        </div>    
+                    </div>
+                    <div class="icon">
+                        <img src="" alt="icon for current weather">
+                        <h4>Sunny</h4>
+                    </div>        
+                </div>
+                <div class="days-forcast">
+                    <h2>5-Day Forcast</h2>
+                    <div class="weather-cards">
+                        <div class="card">
+                            <h3>(10-06-2023)</h3>
+                            <img src="" alt="icon for current weather">
+                                <ul>
+                                    <li>Temp: 90F</li>
+                                    <li>Wind: 2 M/S </li>
+                                    <li>Humidity: 79%</li>
+                                    <li>UV index: 7.8</li>
+                                </ul>
+                        </div>
+                        <div class="card">
+                            <h3>(10-06-2023)</h3>
+                            <img src="" alt="icon for current weather">
+                                <ul>
+                                    <li>Temp: 90F</li>
+                                    <li>Wind: 2 M/S </li>
+                                    <li>Humidity: 79%</li>
+                                    <li>UV index: 7.8</li>
+                                </ul>
+                        </div>
+                        <div class="card">
+                            <h3>(10-06-2023)</h3>
+                            <img src="" alt="icon for current weather">
+                                <ul>
+                                    <li>Temp: 90F</li>
+                                    <li>Wind: 2 M/S </li>
+                                    <li>Humidity: 79%</li>
+                                    <li>UV index: 7.8</li>
+                                </ul>
+                        </div>
+                        <div class="card">
+                            <h3>(10-06-2023)</h3>
+                            <img src="" alt="icon for current weather">
+                                <ul>
+                                    <li>Temp: 90F</li>
+                                    <li>Wind: 2 M/S </li>
+                                    <li>Humidity: 79%</li>
+                                    <li>UV index: 7.8</li>
+                                </ul>
+                        </div>
+                        <div class="card">
+                            <h3>(10-06-2023)</h3>
+                            <img src="" alt="icon for current weather">
+                                <ul>
+                                    <li>Temp: 90F</li>
+                                    <li>Wind: 2 M/S </li>
+                                    <li>Humidity: 79%</li>
+                                    <li>UV index: 7.8</li>
+                                </ul>
+                        </div>
                     </div>
                 </div>
-            </div>        
-            
-            <div class="container-xl text-center">
-                <div class="row row-cols-2">
-                    <div class="col-6 col-md-4">
-                        <div id="currentWeather" class="card">Current Weather</div>
-                        <div id="fiveDayForcast" class="card">Five Day Forcast</div>
-                    </div>
-                </div>
-            </div>        
+            </div> 
         </main>
-
-    
     </body>
     <script src="./assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" 
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
     crossorigin="anonymous">
     </script>
 </html>
+
+
+
+
+
+<!-- <div class="container">
+    <div class="col-md-8">
+        <div id="searchContainer" class="card" style="width: 18rem;">
+            <div class="card-body"> 
+                <form id="citySearch">
+                    <label for="cityInput">Search for a city</label>
+                    <input type="text" id="cityInput" placeholder="Enter a city">
+                    <button id="searchButton">Search</button>
+                </form>
+             
+                <ul id="searchHistory" class="list-group list-group-flush">
+                    <li class="list-group-item">placeholder</li>
+                    <li class="list-group-item">placeholder</li>
+                    <li class="list-group-item">placeholder</li>
+                </ul>
+            </div>    
+        </div>
+    </div>
+</div>        
+
+<div class="container-xl text-center">
+    <div class="row row-cols-2">
+        <div class="col-6 col-md-4">
+            <div id="currentWeather" class="card">Current Weather</div>
+            <div id="fiveDayForcast" class="card">Five Day Forcast</div>
+        </div>
+    </div>
+</div>         -->
