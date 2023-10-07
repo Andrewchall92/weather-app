@@ -24,8 +24,15 @@ var getCityCoordinates = function() {
         return response.json();
     })
     .then(function(data){
-        console.log(data)
-    })
+        console.log(data);
+        if(!data.length) {
+            alert("No coordinates found for " + cityName + "!");
+            var { name, lat, lon} = data[0];
+            getWeather(name, lat, lon);
+        }
+    }).catch(function() {
+        alert("Can not get corridnates!")
+  });
 }
 searchButton.addEventListener('click', getCityCoordinates);
 
