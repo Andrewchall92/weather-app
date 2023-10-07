@@ -11,13 +11,21 @@ var searchButton = document.querySelector('.search-btn');
 var cityInput = document.querySelector('.city-input');
 
 var APIKey = 'be3b0d12ee0e1ba5fd2df576d75ad5b5';
-var city;
-var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + APIKey;
+
 
 var getCityCoordinates = function() {
     var cityName = cityInput.value.trim();
     if (!cityName) return;
+    var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + APIKey;
     console.log(cityName)
+
+    fetch(queryURL)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data)
+    })
 }
 searchButton.addEventListener('click', getCityCoordinates);
 
