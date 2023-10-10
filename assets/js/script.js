@@ -19,9 +19,29 @@ var fiveDaysForecast = [];
 
 
 
-// getCurrentWeather = function(cityName, lat, lon) {
-//     var currentForecastAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
-// }
+getCurrentWeather = function(cityName, lat, lon) {
+    var today = dayjs();
+    var currentForecastAPI = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
+    fetch(currentForecastAPI)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        if(data) {
+            var currentDate = document.getElementById('current-date');
+            currentDate.innerHTML = today.format('MMM D, YYYY')
+            console.log(data)
+            var currentTemp = document.getElementById('current-temp');
+            currentTemp.innerHTML = 'Temp: ' + data.main.temp + '°F';
+            var currentWind = document.getElementById('current-wind');
+            currentWind.innerHTML = 'Wind: ' + data.wind.speed + 'M/S';
+            var currentHumidity = document.getElementById('current-humidity');
+            currentHumidity.innerHTML = 'Humidity ' + data.main.humidity + '%';
+            var currentImg = document.getElementById('current-image');
+            currentImg.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+        }
+    })
+}
 
 
 
@@ -111,11 +131,8 @@ fetch(forcastAPI)
             wind5.innerHTML = 'Wind: ' +  fiveDaysForecast[4].wind.speed + ' ' + 'M/S';
             var humidity5 = document.getElementById('humidity5');
             humidity5.innerHTML = 'Humidity: ' +  fiveDaysForecast[4].main.humidity + ' ' + '%';
-            }
-        
-        
+            }      
     }
-
     }) .catch(function() {
     alert("Error occured while fetching weather forcast!")
     });
@@ -137,8 +154,7 @@ var getCityCoordinates = function() {
             var { name, lat, lon} = data[0];
             get5DayWeather(name, lat, lon);
             currentCity.innerHTML = data[0].name
-            // getCurrentWeather(name, lat, lon);
-        
+            getCurrentWeather(name, lat, lon);
     }).catch(function() {
         alert("Can not get corridnates!")
   });
