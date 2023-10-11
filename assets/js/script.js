@@ -17,8 +17,6 @@ var fiveDaysForecast = [];
 
 
 
-
-
 getCurrentWeather = function(cityName, lat, lon) {
     var today = dayjs();
     var currentForecastAPI = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
@@ -47,7 +45,10 @@ getCurrentWeather = function(cityName, lat, lon) {
 
 
 get5DayWeather = function(cityName, lat, lon) {
-var forcastAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
+    uniqueForecastDays = [];
+    fiveDaysForecast = [];
+
+    var forcastAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
  console.log(lat, lon)
 fetch(forcastAPI)
 .then(function(response) {
@@ -149,15 +150,30 @@ var getCityCoordinates = function() {
         return response.json();
     })
     .then(function(data){
-        // console.log(data);
+        console.log(data);
         if(!data.length) return alert("No coordinates found for " + cityName + "!");
             var { name, lat, lon} = data[0];
             get5DayWeather(name, lat, lon);
             currentCity.innerHTML = data[0].name
             getCurrentWeather(name, lat, lon);
+            localStorage.setItem('cityData', JSON.stringify({name, lat, lon}));
+            var cityData = JSON.parse(localStorage.getItem('cityData'));
+            if(cityData) {
+                var divEl = document.getElementById('search-history');
+                var button = document.createElement('button');
+                button.textContent = cityData.name;
+                button.onclick = function() {
+                    get5DayWeather(cityData.name, cityData.lat, cityData.lon);
+                    getCurrentWeather(cityData.name, cityData.lat, cityData.lon);
+                };
+                divEl.appendChild(button);
+            };
+            
+            
     }).catch(function() {
         alert("Can not get corridnates!")
   });
 }
-searchButton.addEventListener('click', getCityCoordinates);
+searchButton.addEventListener('click', getCityCoordinates,)
+    
 
