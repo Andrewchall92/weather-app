@@ -1,12 +1,3 @@
-// Create a search bar cities
-// Card display for current weather information
-// Card display for 5 day forcast
-// Search history that when clicked brings up the current weather info for selected city
-// Take users input of city name and get coordinates with api call
-// Extract weather data from api call and append to the appropriate spots in current weather
-// Get a five day forcast for city input and append to 5 day forcast cards
-// Store search history in local storage and append each search to a list under the search bar
-
 var searchButton = document.querySelector('.search-btn');
 var cityInput = document.querySelector('.city-input');
 var currentCity = document.getElementById('city-name');
@@ -26,6 +17,9 @@ getCurrentWeather = function(cityName, lat, lon) {
     })
     .then(function(data){
         if(data) {
+           
+            var currentName = document.getElementById('city-name');
+            currentName.innerHTML = data.name
             var currentDate = document.getElementById('current-date');
             currentDate.innerHTML = today.format('MMM D, YYYY')
             console.log(data)
@@ -58,7 +52,7 @@ fetch(forcastAPI)
     for (var i = 0; i  < data.list.length; i ++) {
         var forecast = data.list[i];
         var forecastDate = new Date(forecast.dt_txt).getDate();
-
+        
         if(!uniqueForecastDays.includes(forecastDate)) {
             uniqueForecastDays.push(forecastDate);
             fiveDaysForecast.push(forecast);
@@ -67,7 +61,8 @@ fetch(forcastAPI)
         }
         if(fiveDaysForecast.length > 0) {
             var date1 = document.getElementById('date1');
-            date1.innerHTML = fiveDaysForecast[0].dt_txt;
+            date1Text = fiveDaysForecast[0].dt_txt.split(" ");
+            date1.innerHTML = date1Text[0];
             var img1 = document.getElementById('img1');
             img1.src = "https://openweathermap.org/img/wn/" + fiveDaysForecast[0].weather[0].icon + "@2x.png"
             console.log(fiveDaysForecast[0].weather[0].icon)
@@ -83,7 +78,8 @@ fetch(forcastAPI)
             console.log(fiveDaysForecast[1])
 
             var date2 = document.getElementById('date2');
-            date2.innerHTML = fiveDaysForecast[1].dt_txt;
+            var date2Text = fiveDaysForecast[1].dt_txt.split(" ")
+            date2.innerHTML = date2Text[0];
             var img2 = document.getElementById('img2');
             img2.src = "https://openweathermap.org/img/wn/" + fiveDaysForecast[1].weather[0].icon + "@2x.png"
             console.log(fiveDaysForecast[1].weather[0].icon)
@@ -96,7 +92,8 @@ fetch(forcastAPI)
         }
           if(fiveDaysForecast.length > 2) {  
             var date3 = document.getElementById('date3');
-            date3.innerHTML = fiveDaysForecast[2].dt_txt;
+            date3Text = fiveDaysForecast[2].dt_txt.split(" ");
+            date3.innerHTML = date3Text[0];
             var img3 = document.getElementById('img3');
             img3.src = "https://openweathermap.org/img/wn/" + fiveDaysForecast[2].weather[0].icon + "@2x.png"
             console.log(fiveDaysForecast[2].weather[0].icon)
@@ -109,7 +106,8 @@ fetch(forcastAPI)
           }
             if(fiveDaysForecast.length > 3) {
             var date4 = document.getElementById('date4');
-            date4.innerHTML = fiveDaysForecast[3].dt_txt;
+            date4Text = fiveDaysForecast[3].dt_txt.split(" ");
+            date4.innerHTML = date4Text[0];
             var img4 = document.getElementById('img4');
             img4.src = "https://openweathermap.org/img/wn/" + fiveDaysForecast[3].weather[0].icon + "@2x.png"
             console.log(fiveDaysForecast[3].weather[0].icon)
@@ -122,7 +120,8 @@ fetch(forcastAPI)
             }
             if(fiveDaysForecast.length > 4) {
             var date5 = document.getElementById('date5');
-            date5.innerHTML = fiveDaysForecast[4].dt_txt;
+            date5Text = fiveDaysForecast[4].dt_txt.split(" ");
+            date5.innerHTML = date5Text[0];
             var img5 = document.getElementById('img4');
             img5.src = "https://openweathermap.org/img/wn/" + fiveDaysForecast[4].weather[0].icon + "@2x.png"
             console.log(fiveDaysForecast[4].weather[0].icon)
@@ -163,6 +162,7 @@ var getCityCoordinates = function() {
                 var button = document.createElement('button');
                 button.textContent = cityData.name;
                 button.onclick = function() {
+                    console.log(cityData) 
                     get5DayWeather(cityData.name, cityData.lat, cityData.lon);
                     getCurrentWeather(cityData.name, cityData.lat, cityData.lon);
                 };
@@ -175,5 +175,6 @@ var getCityCoordinates = function() {
   });
 }
 searchButton.addEventListener('click', getCityCoordinates,)
+
     
 
