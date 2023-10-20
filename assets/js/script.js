@@ -141,7 +141,7 @@ fetch(forcastAPI)
 var getCityCoordinates = function() {
     var cityName = cityInput.value.trim();
     if (!cityName) return;
-    var queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + APIKey;
 
 
     fetch(queryURL)
